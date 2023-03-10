@@ -1,4 +1,3 @@
-let mainColor = document.getElementById("mainColor").value;
 let btn;
 
 window.onload = grid();
@@ -37,9 +36,10 @@ function clickBtn(idBtn) {
 }
 
 function changeMainColor(e) {
+  const color = document.getElementById("mainColor").value;
   let randomColor = Math.floor(Math.random() * 16777215).toString(16);
   let x = RGBToHex(e.target.style.backgroundColor);
-  e.target.className = "blockGrid2";
+  e.target.className = e.target.style.backgroundColor;
 
   if (btn == "rainbow") {
     e.target.style.backgroundColor = `#${randomColor}`;
@@ -47,8 +47,8 @@ function changeMainColor(e) {
     e.target.style.backgroundColor = colorShader(x, -30);
   } else if (btn == "lighter") {
     e.target.style.backgroundColor = colorShader(x, 30);
-  } else {
-    e.target.style.backgroundColor = mainColor;
+  }else {
+    e.target.style.backgroundColor = color;
   }
 }
 
@@ -74,7 +74,11 @@ function colorShader(hexColor, magnitude) {
     let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
     b > 255 && (b = 255);
     b < 0 && (b = 0);
-    return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
+    let x = `${(g | (b << 8) | (r << 16)).toString(16)}`;
+    while([...x].length < 6){
+      x = "0" + x;
+    }
+    return '#' + x;
   } else {
     return hexColor;
   }
