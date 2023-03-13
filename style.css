@@ -3,3 +3,25 @@
     flex-wrap: wrap;
     max-width: 16cm;
 }
+
+#divOne {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    flex-grow: 0;
+    border: 1px solid red;
+}
+
+* {
+    text-align: center;
+}
+
+body {
+    background-color:   pink;
+}
+
+#divTwo {
+    display: flex;
+    justify-content: center;
+}
+

@@ -2,9 +2,14 @@ let btn;
 
 window.onload = grid();
 
+let mouseDown = false;
+document.body.onmousedown = () => (mouseDown = true);
+document.body.onmouseup = () => (mouseDown = false);
+
 function gridSizeMeter() {
   const gridSizer = document.getElementById("gridSize").value;
-  document.getElementById("gridSizeMeter").innerHTML = gridSizer;
+  document.getElementById("gridSizeMeter").innerHTML =
+    gridSizer + "x" + gridSizer;
 }
 
 function removeGrid() {
@@ -28,6 +33,7 @@ function grid() {
     blockGrid.style.height = `${16 / gridSizeValue}cm`;
     blockGrid.style.backgroundColor = backgroundColor;
     blockGrid.addEventListener("mouseover", changeMainColor);
+    blockGrid.addEventListener("mousedown", changeMainColor2);
   }
 }
 
@@ -35,21 +41,41 @@ function clickBtn(idBtn) {
   btn = idBtn.id;
 }
 
-function changeMainColor(e) {
-  const color = document.getElementById("mainColor").value;
-  let randomColor = Math.floor(Math.random() * 16777215).toString(16);
-  let x = RGBToHex(e.target.style.backgroundColor);
-  e.target.className = e.target.style.backgroundColor;
+function changeMainColor2(e) {
+    const color = document.getElementById("mainColor").value;
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    let x = RGBToHex(e.target.style.backgroundColor);
+    e.target.className = e.target.style.backgroundColor;
 
-  if (btn == "rainbow") {
-    e.target.style.backgroundColor = `#${randomColor}`;
-  } else if (btn == "darker") {
-    e.target.style.backgroundColor = colorShader(x, -30);
-  } else if (btn == "lighter") {
-    e.target.style.backgroundColor = colorShader(x, 30);
-  }else {
-    e.target.style.backgroundColor = color;
-  }
+    if (btn == "rainbow") {
+      e.target.style.backgroundColor = `#${randomColor}`;
+    } else if (btn == "darker") {
+      e.target.style.backgroundColor = colorShader(x, -30);
+    } else if (btn == "lighter") {
+      e.target.style.backgroundColor = colorShader(x, 30);
+    } else {
+      e.target.style.backgroundColor = color;
+    }
+}
+
+
+function changeMainColor(e) {
+  if (mouseDown === true) {
+    const color = document.getElementById("mainColor").value;
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    let x = RGBToHex(e.target.style.backgroundColor);
+    e.target.className = e.target.style.backgroundColor;
+
+    if (btn == "rainbow") {
+      e.target.style.backgroundColor = `#${randomColor}`;
+    } else if (btn == "darker") {
+      e.target.style.backgroundColor = colorShader(x, -30);
+    } else if (btn == "lighter") {
+      e.target.style.backgroundColor = colorShader(x, 30);
+    } else {
+      e.target.style.backgroundColor = color;
+    }
+  } else return;
 }
 
 function changeBackColor() {
@@ -75,10 +101,10 @@ function colorShader(hexColor, magnitude) {
     b > 255 && (b = 255);
     b < 0 && (b = 0);
     let x = `${(g | (b << 8) | (r << 16)).toString(16)}`;
-    while([...x].length < 6){
+    while ([...x].length < 6) {
       x = "0" + x;
     }
-    return '#' + x;
+    return "#" + x;
   } else {
     return hexColor;
   }

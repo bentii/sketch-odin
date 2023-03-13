@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>E-Scketch</title>
-</head>
-<body>
-    <p id="gridSizeMeter">16</p>
-    <input id="gridSize" type="range" min="16" max="128" step="16" value="16" onchange="gridSizeMeter(), grid()"/>
-    <div id="main-container">
+  </head>
+  <body>
+    <h1>Etch-a-Sketcher</h1>
+    <div id="divTwo">
+      <div id="divOne">
+        <p id="gridSizeMeter">16x16</p>
+        <input
+          id="gridSize"
+          type="range"
+          min="16"
+          max="128"
+          step="16"
+          value="16"
+          onchange="gridSizeMeter(), grid()"
+        />
+        <input
+          type="color"
+          id="backgroundColor"
+          value="#000000"
+          onchange="changeBackColor()"
+        />
+        <input type="color" id="mainColor" value="#FF0000" />
+        <button id="normal" onclick="clickBtn(this)">Normal</button>
+        <button id="rainbow" onclick="clickBtn(this)">Rainbow</button>
+        <button id="darker" onclick="clickBtn(this)">Darker</button>
+        <button id="lighter" onclick="clickBtn(this)">Lighter</button>
+        <button onclick="grid()">Reset</button>
+      </div>
+      <div id="main-container"></div>
     </div>
-    <input type="color" id="backgroundColor" value="#000000" onchange="changeBackColor()">
-    <input type="color" id="mainColor" value="#FF0000">
-    <button id="normal" onclick="clickBtn(this)">Normal</button>
-    <button id="rainbow" onclick="clickBtn(this)">Rainbow</button>
-    <button id="darker" onclick="clickBtn(this)">Darker</button>
-    <button id="lighter" onclick="clickBtn(this)">Lighter</button>
-    <button onclick="grid()">Reset</button>
-</body>     
+  </body>
 </html>
