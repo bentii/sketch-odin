@@ -20,20 +20,52 @@
           max="128"
           step="16"
           value="16"
+          class="slider"
           onchange="gridSizeMeter(), grid()"
         />
+        <!-- HTML !-->
+        <button
+          class="button-49"
+          role="button"
+          id="normal"
+          onclick="clickBtn(this)"
+        >
+          Brush
+        </button>
+        <button
+          class="button-49"
+          role="button"
+          id="rainbow"
+          onclick="clickBtn(this)"
+        >
+          Rainbow
+        </button>
+        <button
+          class="button-49"
+          role="button"
+          id="darker"
+          onclick="clickBtn(this)"
+        >
+          Darker
+        </button>
+        <button
+          class="button-49"
+          role="button"
+          id="lighter"
+          onclick="clickBtn(this)"
+        >
+          Lighter
+        </button>
+        <button class="button-49" role="button" onclick="grid()">Reset</button>
         <input
           type="color"
           id="backgroundColor"
-          value="#000000"
+          value="#FFFFFF"
           onchange="changeBackColor()"
         />
-        <input type="color" id="mainColor" value="#FF0000" />
-        <button id="normal" onclick="clickBtn(this)">Normal</button>
-        <button id="rainbow" onclick="clickBtn(this)">Rainbow</button>
-        <button id="darker" onclick="clickBtn(this)">Darker</button>
-        <button id="lighter" onclick="clickBtn(this)">Lighter</button>
-        <button onclick="grid()">Reset</button>
+        <p>Background</p>
+        <input type="color" id="mainColor" value="#000000" />
+        <p>Paint</p>
       </div>
       <div id="main-container"></div>
     </div>
